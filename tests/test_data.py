@@ -1,5 +1,6 @@
 import pytest
 import requests
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture
 def mock_requests_get(mocker):
@@ -35,3 +36,10 @@ def test_data_endpoint(mock_requests_get):
     assert 'name' in first_business
     assert first_business['name'] == 'Teton Elementary'
     # Add additional assertions as needed based on the expected response
+
+
+def setup_method(self, method):
+    options = Options()
+    options.add_argument("--headless=new")
+    self.driver = webdriver.Chrome(options=options)
+    self.vars = {}
